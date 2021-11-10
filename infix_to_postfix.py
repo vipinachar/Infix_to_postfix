@@ -39,7 +39,6 @@ def infix(exp):
     global top 
     postfix = ''
     for i in exp:
-        print(i)
         if i.isalpha() or i.isdigit():
             postfix += i 
         else:
@@ -67,11 +66,36 @@ def infix(exp):
                     else:
                         val = pop()
                         postfix+=val
-        print('###########',postfix,'#################')
         
     while top!=None:
         postfix+=pop()
     print(postfix)
+
+    ##Evaluates Post Fix 
+
+    for i in postfix:
+        if i.isalpha():
+            print('Can only include numbers')
+            return 
+        elif i.isdigit():
+            push(i)
+        else:
+            b = int(pop())
+            a = int(pop())
+            val=0
+            if i=='+':
+                val=a+b
+            elif i=='-':
+                val=a-b
+            elif i=='*':
+                val=a*b
+            elif i=='/':
+                val=a/b
+            elif i=="^":
+                val=a**b 
+            push(val)
+    
+    disp()
 
 if __name__ == '__main__':
     top = None 
